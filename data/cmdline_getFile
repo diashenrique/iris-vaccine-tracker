@@ -1,0 +1,5 @@
+
+svn checkout https://github.com/owid/covid-19-data/trunk/public/data/vaccinations/country_data
+
+wget https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/locations.csv
+
