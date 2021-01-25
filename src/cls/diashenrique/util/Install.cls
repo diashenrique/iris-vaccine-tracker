@@ -21,6 +21,11 @@ ClassMethod Load() As %Status
     do ##class(diashenrique.util.Utils).loadLatitudeLongitude()
     do ##class(diashenrique.util.Utils).readAndInsertCountry()
     do ##class(diashenrique.util.Utils).readFiles()
+    do ##class(diashenrique.util.Utils).createGlobalSummary()
+    do ##class(diashenrique.util.Utils).createSummaryHeader()
+    do ##class(diashenrique.util.Utils).createTopList()
+
+
     Return sc
 }
 

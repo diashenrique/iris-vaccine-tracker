@@ -158,4 +158,151 @@ ClassMethod readDataCountry(pFilePath As %String) As %Status
     Return sc
 }
 
+/// Creating globals for summary data and help data charts
+/// do ##class(diashenrique.util.Utils).createGlobalSummary()
+ClassMethod createGlobalSummary() As %Status
+{
+    Set tSC = $System.Status.OK()
+
+    kill ^VaccineTypeByCountry
+    kill ^CountryByDate
+
+    Try {
+
+		Set oRS = ##class(%SQL.Statement).%New()
+
+        Set sql = "SELECT CountryId->Name as Country, DateReport, Vaccine, TotalVaccinations FROM diashenrique_data.Vaccinations ORDER BY CountryId->Name ASC"
+
+        Set tSC = oRS.%Prepare(sql)
+
+        Quit:$System.Status.IsError(tSC)
+
+        Set result = oRS.%Execute()
+
+        If (result.%SQLCODE '< 0) {
+	        While result.%Next() {
+                set tCountry = result.Country
+                set tDate = result.DateReport
+                set tVaccine = result.Vaccine
+                set tTotal = result.TotalVaccinations
+
+	        	set ^CountryByDate(tCountry,tDate) = tTotal
+                
+                set i=0
+                for i=1:1:$length(tVaccine,", ") {
+                    set qty = $normalize(1/$length(tVaccine,", "),3)
+                    set tVac = $piece(tVaccine,", ",i)
+                    set ^VaccineTypeByCountry(tVac,tCountry)=qty
+                }
+            }        
+        }
+        Else {
+            Throw ##class(%Exception.SQL).CreateFromSQLCODE(result.%SQLCODE,result.%Message)
+        }
+    }
+    Catch (oException) {
+        Set tSC = oException.AsStatus()
+    }
+
+    Quit tSC
+}
+
+/// Creating globals for summary data and help data charts
+/// do ##class(diashenrique.util.Utils).createSummaryHeader()
+ClassMethod createSummaryHeader() As %Status
+{
+    Set tSC = $System.Status.OK()
+
+    kill ^VaccineByCountry
+    kill ^VaccineSum
+
+    Try {
+
+		Set oRS = ##class(%SQL.Statement).%New()
+
+        Set sql = "SELECT CountryId->Name as Country, MAX(DateReport) as DateReport, MAX(TotalVaccinations) As TotalVaccinations FROM diashenrique_data.Vaccinations Group By CountryId Order By TotalVaccinations DESC"
+
+        Set tSC = oRS.%Prepare(sql)
+
+        Quit:$System.Status.IsError(tSC)
+
+        Set result = oRS.%Execute()
+
+        set ^VaccineSum("Total")=0
+        set countryCount = 0
+
+        If (result.%SQLCODE '< 0) {
+	        While result.%Next() {
+                set countryCount = $increment(countryCount)
+                set tCountry = result.Country
+                set tTotal = result.TotalVaccinations
+
+	        	set ^VaccineByCountry(tCountry) = tTotal
+                set ^VaccineSum("Total")=$get(^VaccineSum("Total"))+tTotal
+                set ^VaccineSum("Country")=countryCount
+            }            
+        }
+        Else {
+            Throw ##class(%Exception.SQL).CreateFromSQLCODE(result.%SQLCODE,result.%Message)
+        }
+
+        set countVacType = 0
+        set tVacType = ""
+        for  {
+            set tVacType = $order(^VaccineTypeByCountry(tVacType))
+            quit:tVacType=""
+
+            set countVacType = $increment(countVacType)
+            set ^VaccineSum("VacType")=countVacType
+        }
+    }
+    Catch (oException) {
+        Set tSC = oException.AsStatus()
+    }
+
+    Quit tSC
+}
+
+/// Creating a global for top most vaccinated countries
+/// do ##class(diashenrique.util.Utils).createTopList()
+ClassMethod createTopList() As %Status
+{
+    Set tSC = $System.Status.OK()
+
+    kill ^TopCountries
+    kill ^BarTopCountries
+    set list=""
+    set listCountries=""
+
+    Try {
+
+		Set oRS = ##class(%SQL.Statement).%New()
+
+        Set sql = "SELECT TOP 10 CountryId, CountryId->Name as Country, MAX(DateReport) as DateReport, MAX(TotalVaccinations) As TotalVaccinations FROM diashenrique_data.Vaccinations Group By CountryId Order By TotalVaccinations DESC"
+
+        Set tSC = oRS.%Prepare(sql)
+
+        Quit:$System.Status.IsError(tSC)
+
+        Set result = oRS.%Execute()
+
+        If (result.%SQLCODE '< 0) {
+	        While result.%Next() {
+                set listCountries = listCountries_","_result.Country
+                set ^BarTopCountries(result.TotalVaccinations)=result.Country
+            }
+            set list=$listfromstring(listCountries)
+            set ^TopCountries=list
+        }
+        Else {
+            Throw ##class(%Exception.SQL).CreateFromSQLCODE(result.%SQLCODE,result.%Message)
+        }
+    }
+    Catch (oException) {
+        Set tSC = oException.AsStatus()
+    }
+
+    Quit tSC
+}
+
 }
