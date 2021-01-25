@@ -13,7 +13,7 @@
       "internalPort": 52773
     },
     "links": {
-      "Multi-model REST": "http://localhost:52773/swagger-ui/index.html?url=http://localhost:52773/api/mgmnt/v1/IRISAPP/spec/crud",
+      "Dashboard": "http://localhost:52773/csp/irisapp/index.html"
     },
     "active": true
   },
