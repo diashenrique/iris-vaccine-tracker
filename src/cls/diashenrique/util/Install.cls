@@ -9,6 +9,7 @@ Class diashenrique.util.Install
 /// read CSV with Locations info
 /// populate Country class
 /// populate Vaccination class
+/// create Global with summaries for the dashboard
 ClassMethod Load() As %Status
 {
     Set sc = $$$OK
@@ -24,7 +25,6 @@ ClassMethod Load() As %Status
     do ##class(diashenrique.util.Utils).createGlobalSummary()
     do ##class(diashenrique.util.Utils).createSummaryHeader()
     do ##class(diashenrique.util.Utils).createTopList()
-
 
     Return sc
 }
