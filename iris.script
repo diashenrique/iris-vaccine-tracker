@@ -5,11 +5,13 @@
  
  zn "IRISAPP"
  do $System.OBJ.LoadDir("/opt/irisapp/src","ck",,1)
- zpm "install dsw"
- zpm "install isc-dev"
- do ##class(dev.code).workdir("/irisdev/app/src")
- do EnableDeepSee^%SYS.cspServer("/csp/irisapp/")
- zpm "load /opt/irisapp/ -v" 
+ do ##class(diashenrique.util.Install).Load()
+ ;zpm "install dsw"
+ ;zpm "install isc-dev"
+ ;do ##class(dev.code).workdir("/irisdev/app/src")
+ ;do EnableDeepSee^%SYS.cspServer("/csp/irisapp/")
+ ;zpm "load /opt/irisapp/ -v" 
+ 
 
  zn "%SYS"
  Do ##class(Security.Users).UnExpireUserPasswords("*")

@@ -1,142 +1,92 @@
-## intersystems-iris-docker-rest-template
-This is a template of a Multi-model REST API application built with ObjectScript in InterSystems IRIS.
-It also has OPEN API spec, 
-can be developed with Docker and VSCode,
-can ve deployed as ZPM module.
+## iris-vaccine-tracker
+This project has the intention to show COVID-19 vaccination track count around the world. Using as backend InterSystems IRIS in a multi-model schema.
 
 ## Prerequisites
 Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Docker desktop](https://www.docker.com/products/docker-desktop) installed.
 
+I'm using IRIS image for arm64 processors; maybe you need to adjust for another image.
+```
+# ARG IMAGE=intersystemsdc/iris-community:2020.3.0.221.0-zpm
+# ARG IMAGE=intersystemsdc/iris-community:2020.4.0.524.0-zpm
+ARG IMAGE=intersystemsdc/iris-community-arm64:2020.4.0.524.0-zpm
+```
+
 ## Installation with ZPM
 
-zpm:USER>install multi-model-api-template
+```
+zpm:USER>install iris-vaccine-tracker
+```
+then open http://localhost:52773/csp/irisapp/index.html
 
-## Installation for development
-
-Create your repository from template.
-
-Clone/git pull the repo into any local directory e.g. like it is shown below (here I show all the examples related to this repository, but I assume you have your own derived from the template):
+## Docker
+The repo is dockerised so you can  clone/git pull the repo into any local directory
 
 ```
-$ git clone git@github.com:intersystems-community/objectscript-rest-docker-template.git
+$ git clone https://github.com/diashenrique/iris-vaccine-tracker.git
 ```
 
 Open the terminal in this directory and run:
 
 ```
-$ docker-compose up -d --build
+$ docker-compose up -d
 ```
+and open and then http://localhost:52773/csp/irisapp/index.html
 
-or open the folder in VSCode and do the following:
-![rest](https://user-images.githubusercontent.com/2781759/78183327-63569800-7470-11ea-8561-c3b547ce9001.gif)
+Or, open the cloned folder in VSCode, start docker-compose and open the URL via VSCode menu:
+![](https://raw.githubusercontent.com/diashenrique/iris-vaccine-tracker/master/image/menuVSCode.png)
 
+## The purpose of this project
 
-## How to Work With it
+The iris-vaccine-tracker has the intention to demonstrate how you can work using a multi-model application. I'm using globals (key-value), SQL, and objects to read and deliver to the user all data presented in this application.
 
-This template creates /crud REST web-application on IRIS which implements 4 types of communication: GET, POST, PUT and DELETE aka CRUD operations.
-These interface works with a sample persistent class dc.Sample.Person.
+## How this project was created
 
-Open http://localhost:52773/swagger-ui/index.html?url=http://localhost:52773/api/mgmnt/v1/USER/spec/crud to test the REST API
-# Testing GET requests
+This project was created using the data provided by [Our World in Data](https://ourworldindata.org). The official repository centralize everything about COVID-19 in a fantastic and open [Github repository](https://github.com/owid/covid-19-data/tree/master/public/data).
 
-To test GET you need to have some data. You can create it with POST request (see below), or you can create some random testing data. to do that call GET on /persons/gen/amount
-where amount is a number of records you want to generate.
+## Load Data
 
-Call:
+The file `iris.script` has the commands that reads and load all data inside the InterSystems IRIS, providing the necessary data for the dashboard.
 
-```
-localhost:52773/crud/persons/gen/10
-```
-to create 10 random records.
+All the files inside the folder data came from the  Our World repository.
 
-Or generate with call via IRIS Terminal
+If you want to refresh the data, you can run the following command inside the folder iris-vaccine-tracker/data
 
 ```
-USER>do ##class(dc.Sample.Person).AddTestData(10)
-```
-This will create 10 random records in dc.Sample.Person class.
+$ svn checkout https://github.com/owid/covid-19-data/trunk/public/data/vaccinations/country_data
+````
 
-
-
-This REST API exposes two GET requests: all the data and one record.
-To get all the data in JSON call:
+It will update the files with the latest vaccination counts from all countries; If you already started the container and want to use the latest info, just run in the terminal:
 
 ```
-localhost:52773/crud/persons/all
+IRISAPP>do ##class(diashenrique.util.Install).Load()
 ```
 
-To request the data for a particular record provide the id in GET request like 'localhost:52773/crud/multi/MODEL/id' . E.g.:
+## Main dashboard
 
-```
-localhost:52773/crud/multi/object/1
-localhost:52773/crud/multi/sql/1
-localhost:52773/crud/multi/keyval/1
-```
+The main dashboard provides a quick overview of the vaccination situation around the world.
 
-This will return JSON data for the person with ID=1, something like that:
+The first widget offers the info about :
 
-```
-{"Name":"Elon Mask","Title":"CEO","Company":"Tesla","Phone":"123-123-1233","DOB":"1982-01-19"}
-```
+- How many vaccines are being used to vaccinate the population
+- How many countries provide the info about vaccination
+- Total of vaccinations applied so far.
 
-# Testing POST request
+The second widget gives us the timeline view of vaccination with the top 10 countries with the biggest vaccination numbers.
 
-Create a POST request e.g. in Postman with raw data in JSON. e.g.
+The third widget offers a bar chart with the top countries, showing the total vaccination so far.
 
-```
-{"Name":"Elon Mask","Title":"CEO","Company":"Tesla","Phone":"123-123-1233","DOB":"1982-01-19"}
-```
+And the final widget, we have the distribution of vaccines, which vaccines are being used, and their percent of usage.
 
-Adjust the authorisation if needed - it is basic for container with default login and password for IRIR Community edition container
+![](https://raw.githubusercontent.com/diashenrique/iris-vaccine-tracker/master/image/dashboard.png)
 
-and send the POST request to localhost:52773/crud/multi/object/
+## Datatable
 
-This will create a record in dc.Sample.Person class of IRIS.
+The data table shows the detailed information that the main dashboard summarized.
 
-# Testing PUT request
+![](https://raw.githubusercontent.com/diashenrique/iris-vaccine-tracker/master/image/datatable.png)
 
-PUT request could be used to update the records. This needs to send the similar JSON as in POST request above supplying the id of the updated record in URL.
-E.g. we want to change the record with id=5. Prepare in Postman the JSON in raw like following:
+## Vaccination Heat Map
 
-```
-{"Name":"Jeff Besos","Title":"CEO","Company":"Amazon","Phone":"123-123-1233","DOB":"1982-01-19"}
-```
+The heat map is a different view using the info that we already used in the main dashboard, and datatable. But now using a detail provided by the Country persistent table. The ISO Code Alpha2, Country Name, and Value are used by the amCharts library to create this awesome chart.
 
-and send the put request to:
-```
-localhost:52773/crud/multi/object/5
-```
-
-# Testing DELETE request
-
-For delete request this REST API expects only the id of the record to delete. E.g. if the id=5 the following DELETE call will delete the record via the MODEL you want:
-
-```
-localhost:52773/crud/multi/object/5
-localhost:52773/crud/multi/sql/5
-localhost:52773/crud/multi/keyval/5
-```
-
-## How to start coding
-This repository is ready to code in VSCode with ObjectScript plugin.
-Install [VSCode](https://code.visualstudio.com/) and [ObjectScript](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript) plugin and open the folder in VSCode.
-Open /src/cls/PackageSample/ObjectScript.cls class and try to make changes - it will be compiled in running IRIS docker container.
-
-Feel free to delete PackageSample folder and place your ObjectScript classes in a form
-/src/cls/Package/Classname.cls
-
-The script in Installer.cls will import everything you place under /src/cls into IRIS.
-
-## What's insde the repo
-
-# Dockerfile
-
-The simplest dockerfile to start IRIS and load ObjectScript from /src/cls folder
-Use the related docker-compose.yml to easily setup additional parametes like port number and where you map keys and host folders.
-
-# .vscode/settings.json
-
-Settings file to let you immedietly code in VSCode with [VSCode ObjectScript plugin](https://marketplace.visualstudio.com/items?itemName=daimor.vscode-objectscript))
-
-# .vscode/launch.json
-Config file if you want to debug with VSCode ObjectScript
+![](https://raw.githubusercontent.com/diashenrique/iris-vaccine-tracker/master/image/heatMap.png)
