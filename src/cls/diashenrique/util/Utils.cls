@@ -40,9 +40,6 @@ ClassMethod loadLatitudeLongitude() As %Status
 ClassMethod readAndInsertCountry() As %Status
 {
     Set sc = $$$OK
-    set file = ##class(%File).%New("/opt/irisapp/dataImport/locations.csv")
-    set sc = file.Open("R")
-    if $$$ISERR(sc) quit
 
     set tISOCode=""
     for  {
@@ -113,8 +110,13 @@ ClassMethod readDataCountry(pFilePath As %String) As %Status
     // Get CountryID on Index Global ^CountryI
     set tCountryIndice = " "_countryNameFile
     ;write "tCountryIndice:"_tCountryIndice,!
+
+    if '$data(^CountryI("IndexCountryName",$ZCONVERT(tCountryIndice,"U"))) {
+        quit
+    }
     set tCountryId = $order(^CountryI("IndexCountryName",$ZCONVERT(tCountryIndice,"U"),""))
     ;write "tCountryId:"_tCountryId,!
+
     set tCountryId = ##class(diashenrique.data.Country).%OpenId(tCountryId)
     ;write "objId:"_tCountryId.Name,!
 
