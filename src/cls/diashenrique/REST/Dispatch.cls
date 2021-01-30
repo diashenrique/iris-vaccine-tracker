@@ -13,10 +13,13 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 <!-- Get a record via SQL API-->
 <Route Url="/sql/list" Method="GET" Call="GetCountryList"/>
 <Route Url="/sql/map" Method="GET" Call="GetMapList"/>
+<Route Url="/sql/mappercent" Method="GET" Call="GetMapPercentList"/>
 <!-- Get a record via Global-->
 <Route Url="/global/header" Method="GET" Call="GetGlobalHeader"/>
 <Route Url="/global/topvacbycountry" Method="GET" Call="GetGlobalVacByCountry"/>
+<Route Url="/global/toppercentvacbycountry" Method="GET" Call="GetPercentVacByCountry"/>
 <Route Url="/global/topvacbarchart" Method="GET" Call="GetBarchartVacByCountry"/>
+<Route Url="/global/tophighbarchart" Method="GET" Call="GetBarHighVacByCountry"/>
 <Route Url="/global/vaccineperc" Method="GET" Call="GetVaccineQty"/>
 
 </Routes>
@@ -55,7 +58,7 @@ ClassMethod GetCountryList() As %Status
 
 		Set oRS = ##class(%SQL.Statement).%New()
 
-        Set sql = "SELECT CountryId->Name as Country, DateReport, Vaccine, TotalVaccinations FROM diashenrique_data.Vaccinations"
+        Set sql = "SELECT CountryId->Name as Country, DateReport, Vaccine, TotalVaccinations, CountryId->Population as Population FROM diashenrique_data.Vaccinations"
 
         Set tSC = oRS.%Prepare(sql)
 
@@ -66,10 +69,14 @@ ClassMethod GetCountryList() As %Status
         If (result.%SQLCODE '< 0) {
 	        While result.%Next() {
                 Set arrayLine = []
+                set percent = 0
 	        	do arrayLine.%Push(result.Country)
 	        	do arrayLine.%Push($zdate(result.DateReport,3))
 	        	do arrayLine.%Push(result.Vaccine)
 	        	do arrayLine.%Push(result.TotalVaccinations)
+	        	do arrayLine.%Push(result.Population)
+                set percent = $number((result.TotalVaccinations * 100) / result.Population,3)
+	        	do arrayLine.%Push(percent)
                 do arrayList.%Push(arrayLine)
             }
         }
@@ -154,6 +161,57 @@ ClassMethod GetGlobalVacByCountry() As %Status
     Return sc
 }
 
+/// GetGlobalVacByCountry return the top 20 most vaccinated countries so far
+ClassMethod GetPercentVacByCountry() As %Status
+{
+    Set sc = $$$OK
+    Set %response.ContentType = ..#CONTENTTYPEJSON
+
+    set arrAll=[]
+    set dynamicAll={}
+    set dynamicCountry={}
+
+    set listCountries = ^HighPercCountries
+
+    set count=0
+    set country = ""
+    for {
+
+        set country=$order(^PercentByDate(country))
+        continue:('$listfind(listCountries,country))
+        quit:(country="")
+
+        set count=$increment(count)
+
+        set arrCountry=[]
+        set arrValues = []
+
+        set date = ""
+        for {
+            set date = $order(^PercentByDate(country,date))
+            quit:date=""
+            
+            set json = {}
+            set objDate = $get(^PercentByDate(country,date))
+            
+            do json.%Set("x",$zdate(date,1))
+            do json.%Set("y",objDate)
+            do arrValues.%Push(json)
+            do arrCountry.%Push(arrValues)
+        }
+
+        set jsoncountry = {}
+        do jsoncountry.%Set("name",country)
+        do jsoncountry.%Set("data",arrValues)
+        do arrAll.%Push(jsoncountry)
+
+        quit:(count=11)
+    }
+
+    do arrAll.%ToJSON()
+    Return sc
+}
+
 /// GetBarchartVacByCountry return data for bar chart
 ClassMethod GetBarchartVacByCountry() As %Status
 {
@@ -173,6 +231,38 @@ ClassMethod GetBarchartVacByCountry() As %Status
         quit:value=""
 
         set countryName = $get(^BarTopCountries(value))
+
+        do arrayValues.%Push($number(value))
+        do arrayCountry.%Push(countryName)        
+    }
+
+    do arrayAll.%Push(arrayValues)
+    do arrayAll.%Push(arrayCountry)
+   
+    do arrayAll.%ToJSON()
+
+    Return sc
+}
+
+/// GetBarchartVacByCountry return data for bar chart
+ClassMethod GetBarHighVacByCountry() As %Status
+{
+    Set sc = $$$OK
+    Set %response.ContentType = ..#CONTENTTYPEJSON
+
+    set arrayValues = []
+    set arrayCountry = []
+    set arrayAll = []
+    set dynamicBar = {}
+
+    set (listValue,listName)=""
+
+    set value = ""
+    for {
+        set value = $order(^BarHighCountries(value),-1)
+        quit:value=""
+
+        set countryName = $get(^BarHighCountries(value))
 
         do arrayValues.%Push($number(value))
         do arrayCountry.%Push(countryName)        
@@ -269,6 +359,51 @@ ClassMethod GetMapList() As %Status
                 do json.%Set("id",result.Alpha2)
                 do json.%Set("name",result.Country)
                 do json.%Set("value",$number(result.TotalVaccinations))
+	        	do arrayMap.%Push(json)
+            }
+        }
+        Else {
+            Throw ##class(%Exception.SQL).CreateFromSQLCODE(result.%SQLCODE,result.%Message)
+        }
+    }
+    Catch (oException) {
+        Set tSC = oException.AsStatus()
+    }
+
+    ;do dynamicMap.%Set(arrayMap)
+    do arrayMap.%ToJSON()
+
+    quit tSC
+}
+
+ClassMethod GetMapPercentList() As %Status
+{
+    Set %response.ContentType = "application/json"
+
+	Set tSC = $System.Status.OK()
+	Set arrayMap = []
+    Set dynamicMap = {}
+
+    Try {
+
+		Set oRS = ##class(%SQL.Statement).%New()
+
+        Set sql = "SELECT CountryId->Alpha2 as Alpha2, CountryId->Name as Country, MAX(TotalVaccinations) As TotalVaccinations,CountryId->Population as Population "_
+        "FROM diashenrique_data.Vaccinations Group By CountryId Order By TotalVaccinations DESC"
+
+        Set tSC = oRS.%Prepare(sql)
+
+        Quit:$System.Status.IsError(tSC)
+
+        Set result = oRS.%Execute()
+
+        If (result.%SQLCODE '< 0) {
+	        While result.%Next() {
+                Set json = {}
+                do json.%Set("id",result.Alpha2)
+                do json.%Set("name",result.Country)
+                set tPercent = $number(((result.TotalVaccinations * 100)/result.Population),3)
+                do json.%Set("value",$number(tPercent))
 	        	do arrayMap.%Push(json)
             }
         }

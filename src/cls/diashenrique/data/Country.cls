@@ -28,6 +28,9 @@ Property Latitude As %String;
 /// Longitude
 Property Longitude As %String;
 
+/// Population
+Property Population As %Integer;
+
 /// Index Country Name
 Index IndexCountryName On Name [ Unique ];
 
@@ -54,6 +57,9 @@ Storage Default
 </Value>
 <Value name="7">
 <Value>Longitude</Value>
+</Value>
+<Value name="8">
+<Value>Population</Value>
 </Value>
 </Data>
 <DataLocation>^CountryD</DataLocation>

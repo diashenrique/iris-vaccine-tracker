@@ -9,12 +9,12 @@ Class diashenrique.util.Utils
 ClassMethod loadLatitudeLongitude() As %Status
 {
     Set sc = $$$OK
-    set file = ##class(%File).%New("/opt/irisapp/dataImport/countries_codes_and_coordinates_full.csv")
+    set file = ##class(%File).%New("/opt/irisapp/dataImport/countries_codes_and_coordinates_full_pop.csv")
     set sc = file.Open("R")
     if $$$ISERR(sc) quit
 
     set count = 0
-    set (tAlpha2, tAlpha3, tNumeric, tLatitude, tLongitude, tCountryName) = ""
+    set (tAlpha2, tAlpha3, tNumeric, tLatitude, tLongitude, tCountryName, tPopulation) = ""
 
     while 'file.AtEnd {
         set count = $INCREMENT(count)
@@ -28,8 +28,9 @@ ClassMethod loadLatitudeLongitude() As %Status
         set tLatitude = $piece(line,";",4)
         set tLongitude = $piece(line,";",5)
         set tCountryName = $piece(line,";",6)
+        set tPopulation = $piece(line,";",7)
 
-        set ^LatitudeLongitude(tAlpha3)=tLatitude_"^"_tLongitude_"^"_tCountryName_"^"_tAlpha2_"^"_tNumeric
+        set ^LatitudeLongitude(tAlpha3)=tLatitude_"^"_tLongitude_"^"_tCountryName_"^"_tAlpha2_"^"_tNumeric_"^"_tPopulation
     }
     do file.Close()
     Return sc
@@ -55,6 +56,7 @@ ClassMethod readAndInsertCountry() As %Status
         set tLongitude = $piece(oCountryDetail,"^",2)
         set tAlpha2 = $piece(oCountryDetail,"^",4)
         set tNumeric = $piece(oCountryDetail,"^",5)
+        set tPopulation = $piece(oCountryDetail,"^",6)
 
         set objCountry = ##class(diashenrique.data.Country).%New()
         set objCountry.Name = tCountryName
@@ -63,6 +65,7 @@ ClassMethod readAndInsertCountry() As %Status
         set objCountry.ISONumeric = tNumeric
         set objCountry.Latitude = tLatitude
         set objCountry.Longitude = tLongitude
+        set objCountry.Population = tPopulation
         set sc = objCountry.%Save()
         quit:$$$ISERR(sc)
     }
@@ -168,12 +171,13 @@ ClassMethod createGlobalSummary() As %Status
 
     kill ^VaccineTypeByCountry
     kill ^CountryByDate
+    kill ^PercentByDate
 
     Try {
 
 		Set oRS = ##class(%SQL.Statement).%New()
 
-        Set sql = "SELECT CountryId->Name as Country, DateReport, Vaccine, TotalVaccinations FROM diashenrique_data.Vaccinations ORDER BY CountryId->Name ASC"
+        Set sql = "SELECT CountryId->Name as Country, DateReport, Vaccine, TotalVaccinations, CountryId->Population as Population FROM diashenrique_data.Vaccinations ORDER BY CountryId->Name ASC"
 
         Set tSC = oRS.%Prepare(sql)
 
@@ -187,8 +191,12 @@ ClassMethod createGlobalSummary() As %Status
                 set tDate = result.DateReport
                 set tVaccine = result.Vaccine
                 set tTotal = result.TotalVaccinations
+                set tPopulation = result.Population
 
 	        	set ^CountryByDate(tCountry,tDate) = tTotal
+
+                set tPercVaccination = $number(((tTotal * 100) / tPopulation),3)
+                set ^PercentByDate(tCountry,tDate) = tPercVaccination
                 
                 set i=0
                 for i=1:1:$length(tVaccine,", ") {
@@ -295,6 +303,52 @@ ClassMethod createTopList() As %Status
             }
             set list=$listfromstring(listCountries)
             set ^TopCountries=list
+        }
+        Else {
+            Throw ##class(%Exception.SQL).CreateFromSQLCODE(result.%SQLCODE,result.%Message)
+        }
+    }
+    Catch (oException) {
+        Set tSC = oException.AsStatus()
+    }
+
+    Quit tSC
+}
+
+/// Create a global with the countries with the highest percentage vaccination population
+ClassMethod createPercentList() As %Status
+{
+    Set tSC = $System.Status.OK()
+
+    kill ^HighPercCountries
+    kill ^BarHighCountries
+
+    set list=""
+    set listCountries=""
+    set percent = ""
+
+    Try {
+
+		Set oRS = ##class(%SQL.Statement).%New()
+
+        Set sql = "SELECT TOP 10 CountryId, CountryId->Name as Country, MAX(DateReport) as DateReport, MAX(TotalVaccinations) As TotalVaccinations, "_
+            "CountryId->Population as Population, (MAX(TotalVaccinations)*100/(CountryId->Population)) as PercentPopulation FROM diashenrique_data.Vaccinations "_
+            "Group By CountryId Order By PercentPopulation DESC"
+
+        Set tSC = oRS.%Prepare(sql)
+
+        Quit:$System.Status.IsError(tSC)
+
+        Set result = oRS.%Execute()
+
+        If (result.%SQLCODE '< 0) {
+	        While result.%Next() {
+                set listCountries = listCountries_","_result.Country
+                set percent = $number(result.PercentPopulation,3)
+                set ^BarHighCountries(percent)=result.Country
+            }
+            set list=$listfromstring(listCountries)
+            set ^HighPercCountries=list
         }
         Else {
             Throw ##class(%Exception.SQL).CreateFromSQLCODE(result.%SQLCODE,result.%Message)
