@@ -3,7 +3,7 @@
   <Document name="iris-vaccine-tracker.ZPM">
     <Module>
       <Name>iris-vaccine-tracker</Name>
-      <Version>1.0.1</Version>
+      <Version>1.0.3</Version>
       <Description>Showing the COVID-19 vaccination track count around the world and the COVID-19. Using as backend InterSystems IRIS in a multi-model schema.</Description>
       <Keywords>iris,covid19,multimodel</Keywords>
       <Packaging>module</Packaging>

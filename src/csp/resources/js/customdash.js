@@ -13,6 +13,7 @@ $(document).ready(function () {
   $.getJSON(urlREST + "/global/topvacbycountry", function (response) {
 
     var options = {
+      colors: ['#0000ff', '#71008e', '#e3001c', '#ff5500', '#ffc600', '#fff12d', '#ffd587', '#e3b9b4', '#719c5a', '#008000'],
       chart: {
         height: 380,
         width: "100%",
@@ -36,9 +37,7 @@ $(document).ready(function () {
   $.getJSON(urlREST + "/global/toppercentvacbycountry", function (response) {
 
     var options = {
-      theme: {
-        palette: 'palette8' // upto palette10
-      },
+      colors: ['#0000ff', '#71008e', '#e3001c', '#ff5500', '#ffc600', '#fff12d', '#ffd587', '#e3b9b4', '#719c5a', '#008000'],
       chart: {
         height: 380,
         width: "100%",
@@ -127,18 +126,7 @@ $(document).ready(function () {
       chart: {
         type: "pie"
       },
-      colors: ['#f51720',
-      '#fa26a0',
-      '#f8d210',
-      '#2ff3e0',
-      '#e1c340',
-      '#4cd7d0',
-      '#a4e8e0',
-      '#f8ea8c',
-      '#146c80',
-      '#22aac0',
-      '#c3b330',
-      '#d23130'],
+      colors: ['#0000ff', '#71008e', '#e3001c', '#ff5500', '#ffc600', '#fff12d', '#ffd587', '#e3b9b4', '#719c5a', '#008000'],
       labels: response[1],
       tooltip: {
         fillSeriesColor: false
@@ -147,7 +135,7 @@ $(document).ready(function () {
         breakpoint: 480,
         options: {
           chart: {
-            width: 200
+            width: 350
           },
           legend: {
             position: "bottom"
