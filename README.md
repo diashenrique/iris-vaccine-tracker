@@ -73,7 +73,11 @@ The first widget offers the info about :
 
 The second widget gives us the timeline view of vaccination with the top 10 countries with the biggest vaccination numbers.
 
-The third widget offers a bar chart with the top countries, showing the total vaccination so far.
+The third widget shows the timeline based on the top 10 countries with the highest percentage of their population vaccinated.
+
+The fourth widget offers a bar chart with the top countries, showing the total vaccination so far.
+
+The fifth widget offers a bar chart and listing the top 10 countries with the highest percent of the population vaccinated.
 
 And the final widget, we have the distribution of vaccines, which vaccines are being used, and their percent of usage.
 
@@ -83,10 +87,18 @@ And the final widget, we have the distribution of vaccines, which vaccines are b
 
 The data table shows the detailed information that the main dashboard summarized.
 
-![](https://raw.githubusercontent.com/diashenrique/iris-vaccine-tracker/master/image/datatable.png)
+![](https://raw.githubusercontent.com/diashenrique/iris-vaccine-tracker/master/image/datatable2.png)
 
 ## Vaccination Heat Map
 
 The heat map is a different view using the info that we already used in the main dashboard, and datatable. But now using a detail provided by the Country persistent table. The ISO Code Alpha2, Country Name, and Value are used by the amCharts library to create this awesome chart.
 
-![](https://raw.githubusercontent.com/diashenrique/iris-vaccine-tracker/master/image/heatMap.png)
+The heat map has two tabs:
+
+- The first one showing the total count of vaccinations from each country.
+
+![](https://raw.githubusercontent.com/diashenrique/iris-vaccine-tracker/master/image/totalHeatMap.png)
+
+- The second heat map showing the total of vaccination, what it means in a percentage based on the population from each country.
+
+![](https://raw.githubusercontent.com/diashenrique/iris-vaccine-tracker/master/image/percentHeatMap.png)
