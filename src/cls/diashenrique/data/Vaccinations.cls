@@ -8,7 +8,7 @@ Property CountryId As diashenrique.data.Country;
 Property DateReport As %Date;
 
 /// Vaccine
-Property Vaccine As %String;
+Property Vaccine As %String(MAXLEN = 200);
 
 /// Total Vaccinations
 Property TotalVaccinations As %Integer;

@@ -1,40 +1,47 @@
 location,date,vaccine,source_url,total_vaccinations,people_vaccinated,people_fully_vaccinated
-Norway,2020-12-27,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,5,5,0
-Norway,2020-12-28,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,606,606,0
-Norway,2020-12-29,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,1674,1674,0
-Norway,2020-12-30,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,2097,2097,0
-Norway,2020-12-31,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,2169,2169,0
-Norway,2021-01-01,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,2175,2175,0
-Norway,2021-01-02,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,2175,2175,0
-Norway,2021-01-03,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,2175,2175,0
-Norway,2021-01-04,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,2176,2176,0
-Norway,2021-01-05,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,5613,5613,0
-Norway,2021-01-06,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,14624,14624,0
-Norway,2021-01-07,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,21177,21177,0
-Norway,2021-01-08,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,22790,22790,0
-Norway,2021-01-09,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,22922,22922,0
-Norway,2021-01-10,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,23029,23029,0
-Norway,2021-01-11,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,23371,23371,0
-Norway,2021-01-12,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,27655,27655,0
-Norway,2021-01-13,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,37341,37341,0
-Norway,2021-01-14,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,45743,45743,0
-Norway,2021-01-15,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,50213,50213,0
-Norway,2021-01-16,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,50946,50946,0
-Norway,2021-01-17,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,51295,51290,5
-Norway,2021-01-18,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,52837,52549,288
-Norway,2021-01-19,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,58131,57076,1055
-Norway,2021-01-20,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,68762,67015,1747
-Norway,2021-01-21,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,77210,75295,1915
-Norway,2021-01-22,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,80460,78538,1922
-Norway,2021-01-23,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,80813,78891,1922
-Norway,2021-01-24,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,80878,78956,1922
-Norway,2021-01-25,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,81452,79530,1922
-Norway,2021-01-26,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,85703,81731,3972
-Norway,2021-01-27,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,104167,92815,11352
-Norway,2021-01-28,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,121090,103413,17677
-Norway,2021-01-29,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,126728,107063,19665
-Norway,2021-01-30,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,127022,107191,19831
-Norway,2021-01-31,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,127152,107271,19881
-Norway,2021-02-01,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,127608,107430,20178
-Norway,2021-02-02,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,136616,113408,23208
-Norway,2021-02-03,Pfizer/BioNTech,https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,165515,135449,30066
+Norway,2020-12-27,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,5,5,0
+Norway,2020-12-28,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,606,606,0
+Norway,2020-12-29,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,1674,1674,0
+Norway,2020-12-30,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,2098,2098,0
+Norway,2020-12-31,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,2170,2170,0
+Norway,2021-01-01,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,2176,2176,0
+Norway,2021-01-02,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,2176,2176,0
+Norway,2021-01-03,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,2179,2179,0
+Norway,2021-01-04,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,2185,2185,0
+Norway,2021-01-05,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,5570,5570,0
+Norway,2021-01-06,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,14625,14625,0
+Norway,2021-01-07,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,21191,21191,0
+Norway,2021-01-08,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,22804,22804,0
+Norway,2021-01-09,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,22938,22938,0
+Norway,2021-01-10,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,23045,23045,0
+Norway,2021-01-11,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,23392,23392,0
+Norway,2021-01-12,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,27653,27653,0
+Norway,2021-01-13,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,37418,37418,0
+Norway,2021-01-14,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,45864,45864,0
+Norway,2021-01-15,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,50332,50332,0
+Norway,2021-01-16,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,51072,51072,0
+Norway,2021-01-17,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,51417,51412,5
+Norway,2021-01-18,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,52984,52696,288
+Norway,2021-01-19,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,58303,57248,1055
+Norway,2021-01-20,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,68978,67231,1747
+Norway,2021-01-21,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,77442,75527,1915
+Norway,2021-01-22,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,80723,78801,1922
+Norway,2021-01-23,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,81076,79154,1922
+Norway,2021-01-24,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,81141,79219,1922
+Norway,2021-01-25,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,81716,79794,1922
+Norway,2021-01-26,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,86079,82028,4051
+Norway,2021-01-27,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,104681,93199,11482
+Norway,2021-01-28,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,121939,103925,18014
+Norway,2021-01-29,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,127703,107633,20070
+Norway,2021-01-30,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,128000,107762,20238
+Norway,2021-01-31,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,128130,107842,20288
+Norway,2021-02-01,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,128586,108000,20586
+Norway,2021-02-02,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,137897,114185,23712
+Norway,2021-02-03,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,170329,138465,31864
+Norway,2021-02-04,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,203896,163574,40322
+Norway,2021-02-05,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,218840,173778,45062
+Norway,2021-02-06,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,220265,174472,45793
+Norway,2021-02-07,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,220875,174789,46086
+Norway,2021-02-08,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,221915,174910,47005
+Norway,2021-02-09,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,230175,180093,50082
+Norway,2021-02-10,"Moderna, Oxford/AstraZeneca, Pfizer/BioNTech",https://www.fhi.no/sv/vaksine/koronavaksinasjonsprogrammet/koronavaksinasjonsstatistikk/,256178,198818,57360
