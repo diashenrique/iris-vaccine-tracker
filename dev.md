@@ -1,0 +1,1 @@
+##class(%File).NormalizeDirectory(##class(diashenrique.util.Utils).#DATAPATH, $System.Util.InstallDirectory())

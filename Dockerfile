@@ -10,7 +10,8 @@ WORKDIR /opt/irisapp
 RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisapp
 USER ${ISC_PACKAGE_MGRUSER}
 
-COPY Installer.cls .
+# COPY Installer.cls .
+# COPY data dataImport
 COPY src src
 COPY iris.script /tmp/iris.script
 
