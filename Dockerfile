@@ -11,9 +11,10 @@ RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisapp
 USER ${ISC_PACKAGE_MGRUSER}
 
 # COPY Installer.cls .
-# COPY data dataImport
+COPY data data
 COPY src src
 COPY iris.script /tmp/iris.script
+COPY module.xml module.xml
 
 RUN iris start IRIS \
 	&& iris session IRIS < /tmp/iris.script \
