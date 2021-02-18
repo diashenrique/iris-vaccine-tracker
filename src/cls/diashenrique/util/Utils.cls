@@ -4,12 +4,16 @@ Include %systemInclude
 Class diashenrique.util.Utils
 {
 
+/// Description
+Parameter DATAPATH = "csp/vaccine/data";
+
 /// Load Latitude Longitude based on ISOCode
 /// do ##class(diashenrique.util.Utils).loadLatitudeLongitude()
 ClassMethod loadLatitudeLongitude() As %Status
 {
     Set sc = $$$OK
-    set file = ##class(%File).%New("/opt/irisapp/dataImport/countries_codes_and_coordinates_full_pop.csv")
+    Set tDataPath=##class(%File).NormalizeDirectory(..#DATAPATH, $System.Util.InstallDirectory())
+    set file = ##class(%File).%New(tDataPath_"/countries_codes_and_coordinates_full_pop.csv")
     set sc = file.Open("R")
     if $$$ISERR(sc) quit
 
@@ -79,9 +83,9 @@ ClassMethod readFiles() As %Status
 {
     Set sc = $$$OK
     Set tFilePath = ""
-    
+    Set tDataPath=##class(%File).NormalizeDirectory(..#DATAPATH, $System.Util.InstallDirectory())
     Set tRS = ##class(%ResultSet).%New("%Library.File:FileSet")
-    Set tSC = tRS.Execute("/opt/irisapp/dataImport/country_data/","*.csv",,0)                 
+    Set tSC = tRS.Execute(tDataPath_"/country_data/","*.csv",,0)                 
 
     set count = 0
     While (tRS.Next()) {
@@ -107,7 +111,7 @@ ClassMethod readDataCountry(pFilePath As %String) As %Status
     set sc = file.Open("R")
     if $$$ISERR(sc) quit
 
-    set countryNameFile = $piece($piece(pFilePath,"/",6),".",1)
+    set countryNameFile = $piece($piece(pFilePath,"/",*),".",1)
     ;write "countryNameFile:"_countryNameFile,! 
 
     // Get CountryID on Index Global ^CountryI

@@ -1,18 +1,18 @@
- do $SYSTEM.OBJ.Load("/opt/irisapp/Installer.cls", "ck")
- set sc = ##class(App.Installer).setup()
- set sc = ##class(App.Installer).SetAppProperties("/csp/irisapp","/opt/irisapp/csp/")
- set sc = ##class(App.Installer).createRESTApp("/csp/irisapp/api","IRISAPP")
+ //do $SYSTEM.OBJ.Load("/opt/irisapp/Installer.cls", "ck")
+ //set sc = ##class(App.Installer).setup()
+ //set sc = ##class(App.Installer).SetAppProperties("/csp/irisapp","/opt/irisapp/csp/")
+ //set sc = ##class(App.Installer).createRESTApp("/csp/irisapp/api","IRISAPP")
  
- zn "IRISAPP"
- do $System.OBJ.LoadDir("/opt/irisapp/src","ck",,1)
- write "Installing data...",!
- do ##class(diashenrique.util.Install).Load()
- write "Installation finished!",!
+ //zn "IRISAPP"
+ //do $System.OBJ.LoadDir("/opt/irisapp/src","ck",,1)
+ //write "Installing data...",!
+ //do ##class(diashenrique.util.Install).Load()
+ //write "Installation finished!",!
  ;zpm "install dsw"
  ;zpm "install isc-dev"
  ;do ##class(dev.code).workdir("/irisdev/app/src")
  ;do EnableDeepSee^%SYS.cspServer("/csp/irisapp/")
- ;zpm "load /opt/irisapp/ -v" 
+ zpm "load /opt/irisapp/ -v" 
  
 
  zn "%SYS"

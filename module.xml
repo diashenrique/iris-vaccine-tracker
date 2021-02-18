@@ -3,14 +3,16 @@
   <Document name="iris-vaccine-tracker.ZPM">
     <Module>
       <Name>iris-vaccine-tracker</Name>
-      <Version>1.0.3</Version>
+      <Version>1.0.4</Version>
       <Description>Showing the COVID-19 vaccination track count around the world and the COVID-19. Using as backend InterSystems IRIS in a multi-model schema.</Description>
       <Keywords>iris,covid19,multimodel</Keywords>
       <Packaging>module</Packaging>
-      <CSPApplication CookiePath="/csp/irisapp/" DefaultTimeout="900" DeployPath="/opt/irisapp/csp/" MatchRoles=":%DB_IRISAPP:%SQL" PasswordAuthEnabled="1" Recurse="1" ServeFiles="1" ServeFilesTimeout="3600" SourcePath="/opt/irisapp/csp/" UnauthenticatedEnabled="0" Url="/csp/irisapp" UseSessionCookie="2"/>
-      <CSPApplication CookiePath="/csp/irisapp/api/" DefaultTimeout="900" DispatchClass="diashenrique.REST.Dispatch" MatchRoles=":%All" PasswordAuthEnabled="1" Recurse="1" ServeFiles="1" ServeFilesTimeout="3600" UnauthenticatedEnabled="0" Url="/csp/irisapp/api" UseSessionCookie="2"/>
-      <Resource Directory="cls" Name="diashenrique.PKG"/>
       <SourcesRoot>src</SourcesRoot>
+      <CSPApplication CookiePath="${cspdir}vaccine" DefaultTimeout="900" DeployPath="${cspdir}vaccine" MatchRoles=":%DB_IRISAPP:%SQL" PasswordAuthEnabled="1" Recurse="1" ServeFiles="1" ServeFilesTimeout="3600" SourcePath="src/csp/" UnauthenticatedEnabled="0" Url="/vaccine" UseSessionCookie="2"/>
+      <CSPApplication CookiePath="${cspdir}irisapp/api/" DefaultTimeout="900" DispatchClass="diashenrique.REST.Dispatch" MatchRoles=":%All" PasswordAuthEnabled="1" Recurse="1" ServeFiles="1" ServeFilesTimeout="3600" UnauthenticatedEnabled="0" Url="/csp/irisapp/api" UseSessionCookie="2"/>
+      <Resource Directory="cls" Name="diashenrique.PKG"/>
+      <Invoke Class="diashenrique.util.Install" Method="Load"></Invoke>
+      <FileCopy Name="data/" Target="${cspdir}vaccine/data/"/>
     </Module>
   </Document>
 </Export>
