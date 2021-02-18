@@ -102,3 +102,5 @@ The heat map has two tabs:
 - The second heat map showing the total of vaccination, what it means in a percentage based on the population from each country.
 
 ![](https://raw.githubusercontent.com/diashenrique/iris-vaccine-tracker/master/image/percentHeatMap.png)
+
+## Deployment to Cloud Run
