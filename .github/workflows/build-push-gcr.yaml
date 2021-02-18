@@ -13,8 +13,8 @@ env:
   CLUSTER_NAME: anthos
   NAMESPACE:    iris
 
-  IMAGE_NAME:   covid-19-cloud-run
-  SERVICE:      covid-19
+  IMAGE_NAME:   iris-vaccine-tracker
+  SERVICE:      vaccine-tracker
   DOMAIN_NAME:  covid-19.myardyas.club
 jobs:
   deploy-cloud-run:
