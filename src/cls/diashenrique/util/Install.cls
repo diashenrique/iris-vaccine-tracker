@@ -18,7 +18,7 @@ ClassMethod Load() As %Status
     kill ^CountryD
     kill ^CountryI
     kill ^VaccinationsD
-
+  B "L+"
     do ##class(diashenrique.util.Utils).loadLatitudeLongitude()
     do ##class(diashenrique.util.Utils).readAndInsertCountry()
     do ##class(diashenrique.util.Utils).readFiles()
